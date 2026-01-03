@@ -33,33 +33,48 @@ class Colors:
 
 def print_banner():
     """ReconScope banner'ını yazdırır"""
+    # Windows uyumluluğu için encoding kontrolü
+    try:
+        import sys
+        if sys.platform == 'win32':
+            import io
+            if hasattr(sys.stdout, 'buffer'):
+                sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+    except:
+        pass
+    
+    # ASCII-only banner (Windows uyumlu)
     banner = f"""
 {Colors.CYAN}{Colors.BOLD}
-╔══════════════════════════════════════════════════════════════════════╗
-║                                                                      ║
-║     ██████╗ ███████╗ ██████╗  ██████╗ ███╗   ██╗                     ║
-║     ██╔══██╗██╔════╝██╔═══██╗██╔═══██╗████╗  ██║                     ║
-║     ██████╔╝█████╗  ██║     ██║   ██║██╔██╗ ██║                      ║
-║     ██╔══██╗██╔══╝  ██║     ██║   ██║██║╚██╗██║                      ║
-║     ██║  ██║███████╗╚██████╔╝╚██████╔╝██║ ╚████║                     ║
-║     ╚═╝  ╚═╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝                     ║
-║                                                                      ║
-║     ███████╗ ██████╗  ██████╗ ██████╗ ███████╗                       ║
-║     ██╔════╝██╔═══██╗██╔═══██╗██╔══██╗██╔════╝                       ║
-║     ███████╗██║     ██║   ██║██████╔╝█████╗                          ║
-║     ╚════██║██║     ██║   ██║██╔═══╝ ██╔══╝                          ║
-║     ███████║╚██████╔╝╚██████╔╝██║     ███████╗                       ║
-║     ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝     ╚══════╝                       ║
-║                                                                      ║
-╚══════════════════════════════════════════════════════════════════════╝
+{'=' * 70}
+                                                                      
+                    R E C O N S C O P E                              
+                                                                      
+{'=' * 70}
 {Colors.RESET}
-{Colors.YELLOW}{Colors.BOLD}                    Comprehensive Reconnaissance & Security Scanner{Colors.RESET}
-{Colors.GRAY}                    Version 1.0.0 | Professional Security Tool{Colors.RESET}
-{Colors.GRAY}                    Developed by: bsekercioglu{Colors.RESET}
-{Colors.GRAY}                    Repository: https://github.com/bsekercioglu/reconscope{Colors.RESET}
+{Colors.YELLOW}{Colors.BOLD}        Comprehensive Reconnaissance & Security Scanner{Colors.RESET}
+{Colors.GRAY}        Version 1.0.0 | Professional Security Tool{Colors.RESET}
+{Colors.GRAY}        Developed by: bsekercioglu{Colors.RESET}
+{Colors.GRAY}        Repository: https://github.com/bsekercioglu/reconscope{Colors.RESET}
 {Colors.CYAN}{'=' * 70}{Colors.RESET}
 """
-    print(banner)
+    try:
+        print(banner)
+    except (UnicodeEncodeError, AttributeError):
+        # Fallback: ASCII-only banner (renk kodları olmadan)
+        banner_ascii = """
+======================================================================
+                                                                      
+                    R E C O N S C O P E                              
+                                                                      
+======================================================================
+        Comprehensive Reconnaissance & Security Scanner
+        Version 1.0.0 | Professional Security Tool
+        Developed by: bsekercioglu
+        Repository: https://github.com/bsekercioglu/reconscope
+======================================================================
+"""
+        print(banner_ascii)
 
 # Cryptography kütüphanesi için try-except
 try:
