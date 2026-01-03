@@ -1,0 +1,17 @@
+# Domain Port SSL Kontrol Aracı - Gereksinimler
+# Python 3.7+ gereklidir
+
+# Standart kütüphaneler (Python ile birlikte gelir):
+# - socket (DNS çözümleme ve port tarama)
+# - ssl (SSL/TLS sertifika bilgileri)
+# - json (JSON formatında raporlama)
+# - argparse (Komut satırı argümanları)
+# - datetime (Tarih/saat işlemleri)
+# - typing (Tip ipuçları)
+# - concurrent.futures (Eşzamanlı port tarama)
+# - time (Zaman ölçümü)
+# - re (Regex işlemleri)
+
+# Ek kütüphaneler:
+cryptography>=3.0.0  # SSL sertifika parsing için
+dnspython>=2.0.0      # DNS kayıtları sorgulama için
